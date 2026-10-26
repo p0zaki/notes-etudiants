@@ -1,0 +1,5 @@
+# Éléments à ne pas partager sur GitHub
+.venv/
+__pycache__/
+*.db
+.env
