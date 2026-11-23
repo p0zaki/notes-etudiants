@@ -1,7 +1,7 @@
 import sqlite3
 from flask import Flask, jsonify, request
 from auth import utilisateur_connecte
-
+# ceci est une ligne volontairement beaucoup trop longue pour faire echouer flake8 et casser le pipeline ok ok ok ok
 app = Flask(__name__)
 DB = "notes.db"
 
