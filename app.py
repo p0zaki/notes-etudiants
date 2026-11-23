@@ -108,6 +108,8 @@ def modifier_note(note_id):
         return jsonify({"erreur": "Erreur interne du serveur"}), 500
 
 
+init_db()
+
+
 if __name__ == "__main__":
-    init_db()
     app.run(port=5000)
