@@ -49,8 +49,10 @@ def lire_notes():
     con.row_factory = sqlite3.Row
     cur = con.cursor()
     if etudiant:
-        # Requête paramétrée pour éviter l'injection SQL (S1)[cite: 5]
-        cur.execute("SELECT * FROM notes WHERE etudiant = ?", (etudiant,))
+        # Requête construite par concaténation (volontairement vulnérable)
+        cur.execute(
+            "SELECT * FROM notes WHERE etudiant = '" + etudiant + "'"
+        )
     else:
         cur.execute("SELECT * FROM notes")
     lignes = [dict(ligne) for ligne in cur.fetchall()]
