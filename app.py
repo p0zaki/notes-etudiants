@@ -39,7 +39,7 @@ def accueil():
 
 @app.route("/health", methods=["GET"])
 def health():
-    return jsonify({"status": "ok"}), 200
+    return jsonify({"status": "ko"}), 200
 
 
 @app.route("/notes", methods=["GET"])
