@@ -5,6 +5,7 @@ from auth import utilisateur_connecte
 app = Flask(__name__)
 DB = "notes.db"
 
+
 def init_db():
     con = sqlite3.connect(DB)
     cur = con.cursor()
@@ -30,13 +31,16 @@ def init_db():
     con.commit()
     con.close()
 
+
 @app.route("/", methods=["GET"])
 def accueil():
     return jsonify({"message": "Service des notes des étudiants"}), 200
 
+
 @app.route("/health", methods=["GET"])
 def health():
     return jsonify({"status": "ok"}), 200
+
 
 @app.route("/notes", methods=["GET"])
 def lire_notes():
@@ -54,6 +58,8 @@ def lire_notes():
     return jsonify(lignes)
 
 # Modification d'une note par l'enseignant (Version corrigée et sécurisée)
+
+
 @app.route("/notes/<int:note_id>", methods=["PUT"])
 def modifier_note(note_id):
     # 1. Authentification obligatoire (S2)[cite: 3, 5]
@@ -100,6 +106,7 @@ def modifier_note(note_id):
     except sqlite3.Error:
         # 6. Gestion d'erreur sans fuite de détails techniques (S7)[cite: 5, 6]
         return jsonify({"erreur": "Erreur interne du serveur"}), 500
+
 
 if __name__ == "__main__":
     init_db()
